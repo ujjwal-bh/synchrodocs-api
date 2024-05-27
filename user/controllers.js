@@ -3,8 +3,7 @@ const CustomError = require('../errors');
 const { StatusCodes } = require('http-status-codes');
 
 const createUser = async (req, res) => {
-    const {username, password} = req.body();
-    const role = 'staff';
+    const {username, password} = req.body;
     const isUsernameTaken = await User.findOne({ username });
 
     if (isUsernameTaken) {
@@ -14,7 +13,7 @@ const createUser = async (req, res) => {
 
     res.status(StatusCodes.CREATED).json({
         user: {
-            id: user._id,
+            id: user.id,
             name: user.name || "",
             username: user.username,
         }
@@ -29,7 +28,7 @@ const updateUser = async (req, res) => {
 
     
 
-    // const updatedUser = await User.findOneAndUpdate({ _id:userId }, {}, {
+    // const updatedUser = await User.findOneAndUpdate({ id:userId }, {}, {
     //     runValidators:true,
     //     new:true
     // });
@@ -46,7 +45,7 @@ const resetPassword = async (req, res) => {
     // const query = objectWith(req.body, ['password']);
     // const { id:userId } = req.params;
 
-    // const user = await User.findOne({ _id:userId });
+    // const user = await User.findOne({ id:userId });
     // if (!user) {
     //     throw new CustomError.NotFoundError(`No user found with id :${query?.id} .`);
     // }
@@ -54,7 +53,7 @@ const resetPassword = async (req, res) => {
     // if(req.user.id === query?.id){
     //     throw new CustomError.UnauthorizedError('Permission Denied .');
     // }
-    // await checkPermission({ user:req.user, resourceUserId:user._id });
+    // await checkPermission({ user:req.user, resourceUserId:user.id });
     
     // user.password = query?.password;
     // await user.save();
@@ -71,7 +70,7 @@ const getAllUsers = async (req, res) => {
 
 const getSingleUser = async (req, res) => {
     const { id: userId } = req.params;
-    const user = await User.findOne({ _id: userId }).select('-password');
+    const user = await User.findOne({ id: userId }).select('-password');
 
     if (!user) {
         throw new CustomError.NotFoundError(`No user found with id :${userId} .`);
@@ -83,7 +82,7 @@ const getSingleUser = async (req, res) => {
 
 const getCurrentUser = async (req, res) => {
     res.status(StatusCodes.OK).json({
-        id:req.user._id,
+        id:req.user.id,
         username:req.user.username,
     })
 }
@@ -92,7 +91,7 @@ const getCurrentUser = async (req, res) => {
 const deleteUser = async (req, res) => {
     const { id:userId } = req.params;
 
-    const user = await User.findOne({ _id:userId });
+    const user = await User.findOne({ id:userId });
     if(!user){
         throw new CustomError.NotFoundError(`No user found with id :${userId} .`);
     }

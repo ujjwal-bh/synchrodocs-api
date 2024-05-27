@@ -31,7 +31,7 @@ UserSchema.methods.comparePassword = async function(password){
 
 
 UserSchema.methods.createJWTPayload = async function(){
-    return { name:this.username, userId:this._id}
+    return { username:this.username, userId:this.id}
 }
 
 

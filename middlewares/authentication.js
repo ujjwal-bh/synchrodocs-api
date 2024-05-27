@@ -13,7 +13,6 @@ const authenticateUser = async (req, res, next) => {
         const { userId} = isTokenValid(accessToken);
         // req.user = { name, userId, role };
         req.user = await User.findOne({ _id:userId });
-
         next();
     } catch (err) {
         console.log(err);

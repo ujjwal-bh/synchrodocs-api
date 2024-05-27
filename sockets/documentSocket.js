@@ -9,6 +9,7 @@ const findOrCreateDocument = async (id) => {
 
 module.exports = (io) => {
     io.on("connection", (socket) => {
+      console.log("connected")
         socket.on("get-document", async (documentId) => {
           console.log(documentId);
           const document = await findOrCreateDocument(documentId);
