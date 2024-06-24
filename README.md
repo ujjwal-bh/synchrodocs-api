@@ -2,6 +2,8 @@
 
 This is the backend for SynchroDocs, a collaborative online document editor. The backend is built with Node.js, Express, MongoDB, and Socket.io for real-time collaboration.
 
+frontend: https://www.github.com/ujjwal-bh/synchrodocs-ui
+
 ## Features
 
 - Real-time collaborative editing using Socket.io
