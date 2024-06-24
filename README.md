@@ -76,4 +76,4 @@ Ensure you have the following installed on your system:
 
 ## Contact
 
-For any questions or issues, please open an issue in the repository or contact us at support@synchrodocs.com.
+For any questions or issues, please open an issue in the repository or contact us at bhattaraujjwal26@gmail.com
